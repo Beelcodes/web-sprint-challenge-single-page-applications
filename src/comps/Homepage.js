@@ -11,7 +11,9 @@ const HomePage = () => {
         </div>
         <div className="Navigation">
           <Link to="/">Home</Link>
-          <Link to="/Pizza">Order a Pizza!</Link>
+          <Link id="order-pizza" to="/pizza">
+            Order a Pizza!
+          </Link>
         </div>
       </div>
       <div className="TextContainer">

@@ -22,7 +22,7 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .required("Name is a required field")
-    .min(2, "Name field length must be atleast 2 characters"),
+    .min(2, "name must be at least 2 characters"),
   size: yup.boolean().oneOf([true], "You must select a pizza size"),
   Pepperoni: yup.boolean(),
   Ham: yup.boolean(),
@@ -86,7 +86,7 @@ function FormPage() {
     };
 
     axios
-      .post("https://reqres.in/api/users", newUser)
+      .post("https://reqres.in/api/orders", newUser)
       .then((res) => {
         setForm({
           name: "",
@@ -152,11 +152,12 @@ function FormPage() {
           {errors.name}
           <br />
         </div>
-        <form onSubmit={submit} autoComplete="off">
+        <form id="pizza-form" onSubmit={submit} autoComplete="off">
           <div>
             <label>
               Name:
               <input
+                id="name-input"
                 onChange={change}
                 value={form.name}
                 type="text"
@@ -168,7 +169,12 @@ function FormPage() {
           <div>
             <label>
               Size Selection
-              <select onChange={change} value={form.size} name="size">
+              <select
+                onChange={change}
+                id="size-dropdown"
+                value={form.size}
+                name="size"
+              >
                 <option value="">-Select-</option>
                 <option value="1">Personal Pan</option>
                 <option value="2">Small</option>
@@ -259,6 +265,7 @@ function FormPage() {
             <label>
               Special Instructions:
               <input
+                id="special-text"
                 onChange={change}
                 value={form.siInput}
                 name="siInput"
@@ -267,7 +274,9 @@ function FormPage() {
             </label>
           </div>
 
-          <button name="button">Add to order</button>
+          <button id="order-button" name="button">
+            Add to order
+          </button>
 
           <div className="returnContainer">
             <h3>Returned Data:</h3>
